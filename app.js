@@ -25,7 +25,12 @@ app.use((req,res,next) =>{
 app.get("/",(req,res)=>{
     res.render("home", {datas : req.dataChars})
 })
-    
+
+app.get("/char/:id",(req,res)=>{
+    charId = req.params.id
+    char = req.dataChars.find(data => data.id === req.params.id)
+    res.render("character",{title:`character ${charId}`, char})
+})
 
 app.listen(3000,()=>{
     console.log("Server Running.....")
