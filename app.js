@@ -1,14 +1,20 @@
 const express = require("express")
+const expressLayouts = require("express-ejs-layouts")
+
+
 app = express()
 app.set('view engine', 'ejs')
+app.use(expressLayouts)
 
-const url = 'https://stand-by-me.herokuapp.com/api/v1/characters'
+const urlChars = 'https://stand-by-me.herokuapp.com/api/v1/characters'
+const urlStands = 'https://stand-by-me.herokuapp.com/api/v1/stands'
 let dataChars = null
 let dataStands = null
 
-app.use((req,res,next) =>{
+// fetch data chars by middleware
+const fetchChar = (req,res,next) => {
     if(!dataChars){
-        fetch(url)
+        fetch(urlChars)
         .then((res) => {return res.json()})
         .then(data => {
             dataChars = data
@@ -19,18 +25,48 @@ app.use((req,res,next) =>{
         req.dataChars = dataChars
         next()
     }
+}
+
+// fetch data stands by middleware
+const fetchStands = (req,res,next) => {
+    if(!dataChars){
+        fetch(urlStands)
+        .then((res) => {return res.json()})
+        .then(data => {
+            dataStands = data
+            req.dataStands = data
+            next()})
+        .catch(err => {console.log(err)})
+    }else{
+        req.dataStands = dataStands
+        next()
+    }
+}
+
+
+// home route
+app.get('/', (req,res) =>{
+    res.render("home", {title:"home", layout:"layouts/main-layouts"})
 })
 
-
-app.get("/",(req,res)=>{
-    res.render("home", {datas : req.dataChars})
+// char route
+app.get("/char", fetchChar,(req,res)=>{
+    res.render("character", {title:"Char page", datas : req.dataChars, layout:"layouts/main-layouts"})
 })
 
-app.get("/char/:id",(req,res)=>{
+// char id route
+app.get("/char/:id", fetchChar,(req,res)=>{
     charId = req.params.id
     char = req.dataChars.find(data => data.id === req.params.id)
-    res.render("character",{title:`character ${charId}`, char})
+    res.render("charProfile",{title:`Character ${charId}`, char, layout:"layouts/main-layouts"})
 })
+
+// stands route
+app.get("/stands",fetchStands,(req,res)=>{
+    res.render("stands", {title:"Stands Page", datas:req.dataStands, layout:"layouts/main-layouts"})
+})
+
+// stands id route
 
 app.listen(3000,()=>{
     console.log("Server Running.....")
