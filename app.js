@@ -4,6 +4,8 @@ const expressLayouts = require("express-ejs-layouts")
 
 app = express()
 app.set('view engine', 'ejs')
+
+app.use(express.static("./public"))
 app.use(expressLayouts)
 
 const urlChars = 'https://stand-by-me.herokuapp.com/api/v1/characters'
@@ -67,6 +69,19 @@ app.get("/stands",fetchStands,(req,res)=>{
 })
 
 // stands id route
+app.get("/stand/:id", fetchStands,(req,res)=>{
+    standId = req.params.id
+    stand = req.dataStands.find(data => data.id === standId)
+    res.render("standProfile",{title:`Character ${standId}`, stand, layout:"layouts/main-layouts"})
+})
+
+
+
+
+
+app.use("/", (req,res)=>{
+    res.render("404",{title:"NOT FOUND",layout:"layouts/main-layouts"})
+})
 
 app.listen(3000,()=>{
     console.log("Server Running.....")

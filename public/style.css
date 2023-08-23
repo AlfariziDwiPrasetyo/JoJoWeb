@@ -1,0 +1,9 @@
+.button{
+    background-color:  rgb(98, 0, 168);
+    color: white;
+}
+
+.button:hover{
+    color: white;
+    background-color: indigo;
+}
