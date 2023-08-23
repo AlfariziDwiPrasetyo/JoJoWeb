@@ -20,11 +20,11 @@ const fetchChar = (req,res,next) => {
         .then((res) => {return res.json()})
         .then(data => {
             dataChars = data
-            req.dataChars = data
+            // req.dataChars = data
             next()})
         .catch(err => {console.log(err)})
     }else{
-        req.dataChars = dataChars
+        dataChars = dataChars
         next()
     }
 }
@@ -36,43 +36,43 @@ const fetchStands = (req,res,next) => {
         .then((res) => {return res.json()})
         .then(data => {
             dataStands = data
-            req.dataStands = data
+            // req.dataStands = data
             console.log(data)
             next()})
         .catch(err => {console.log(err)})
     }else{
-        req.dataStands = dataStands
+        dataStands = dataStands
         next()
     }
 }
 
 
 // home route
-app.get('/', (req,res) =>{
+app.get('/', fetchChar,fetchStands, (req,res) =>{
     res.render("home", {title:"home", layout:"layouts/main-layouts"})
 })
 
 // char route
 app.get("/char", fetchChar,(req,res)=>{
-    res.render("character", {title:"Char page", datas : req.dataChars, layout:"layouts/main-layouts"})
+    res.render("character", {title:"Char page", datas : dataChars, layout:"layouts/main-layouts"})
 })
 
 // char id route
 app.get("/char/:id", fetchChar,(req,res)=>{
     charId = req.params.id
-    char = req.dataChars.find(data => data.id === req.params.id)
+    char = dataChars.find(data => data.id === req.params.id)
     res.render("charProfile",{title:`Character ${charId}`, char, layout:"layouts/main-layouts"})
 })
 
 // stands route
 app.get("/stands",fetchStands,(req,res)=>{
-    res.render("stands", {title:"Stands Page", datas:req.dataStands, layout:"layouts/main-layouts"})
+    res.render("stands", {title:"Stands Page", datas:dataStands, layout:"layouts/main-layouts"})
 })
 
 // stands id route
 app.get("/stand/:id", fetchStands,(req,res)=>{
     standId = req.params.id
-    stand = req.dataStands.find(data => data.id === standId)
+    stand = dataStands.find(data => data.id === standId)
     res.render("standProfile",{title:`Character ${standId}`, stand, layout:"layouts/main-layouts"})
 })
 

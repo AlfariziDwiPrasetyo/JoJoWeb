@@ -7,3 +7,38 @@
     color: white;
     background-color: indigo;
 }
+
+.name{
+    color: rgb(98, 0, 168);
+}
+
+.name:hover{
+    color: indigo;
+}
+
+.title{
+    font-size: 50px;
+    color: indigo;
+}
+
+.about-us-p{
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+    .title{
+        font-size: 25px;
+    }
+
+    .title-p{
+        font-size: 18px;
+    }
+    
+    .about-us{
+        font-size: 25px;
+    }
+
+    .about-us-p{
+        font-size:12px;
+    }
+  }
