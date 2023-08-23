@@ -1,5 +1,6 @@
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
+const {getRandomData} = require("./utils/data")
 
 
 app = express()
@@ -31,13 +32,12 @@ const fetchChar = (req,res,next) => {
 
 // fetch data stands by middleware
 const fetchStands = (req,res,next) => {
-    if(!dataChars){
+    if(!dataStands){
         fetch(urlStands)
         .then((res) => {return res.json()})
         .then(data => {
             dataStands = data
             // req.dataStands = data
-            console.log(data)
             next()})
         .catch(err => {console.log(err)})
     }else{
@@ -49,7 +49,10 @@ const fetchStands = (req,res,next) => {
 
 // home route
 app.get('/', fetchChar,fetchStands, (req,res) =>{
-    res.render("home", {title:"home", layout:"layouts/main-layouts"})
+    const charactersData = getRandomData(dataChars, 3)
+    const standsData = getRandomData(dataStands, 3)
+
+    res.render("home", {title:"home", charactersData, standsData, layout:"layouts/main-layouts"})
 })
 
 // char route
@@ -60,12 +63,12 @@ app.get("/char", fetchChar,(req,res)=>{
 // char id route
 app.get("/char/:id", fetchChar,(req,res)=>{
     charId = req.params.id
-    char = dataChars.find(data => data.id === req.params.id)
+    char = dataChars.find(data => data.id === charId)
     res.render("charProfile",{title:`Character ${charId}`, char, layout:"layouts/main-layouts"})
 })
 
 // stands route
-app.get("/stands",fetchStands,(req,res)=>{
+app.get("/stands",fetchStands, (req,res)=>{
     res.render("stands", {title:"Stands Page", datas:dataStands, layout:"layouts/main-layouts"})
 })
 

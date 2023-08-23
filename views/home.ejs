@@ -12,8 +12,42 @@
 
   <div class="about-container p-2">
     <h2 class= "mt-5 about-us" style="color: indigo;">Characters</h2>
-    <p class="mt-2 about-us-p">JOJOWi stands for JoJo Wikipedia, at JOJOWi, we're dedicated to providing you profile of stands and character in JoJo's Bizarre Adventure (JJBA). Whether you're a long-time fan or just starting to explore the world of JoJo, you'll find everything you need to know right here.</p>
+    <div class="row">
+      <% charactersData.forEach(data => { %>
+      <div class="col-md-4 col-12 mt-4">
+          <div class="card">
+              <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
+              <div class="card-body">
+              <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
+              <p class="card-text"><%= data.chapter %></p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <a href="/char" class="text-center mt-2"><button class="button btn" type="submit">See More</button></a>
+    </div>  
   </div>
+
+
+  <div class="about-container p-2">
+    <h2 class= "mt-5 about-us" style="color: indigo;">Stands</h2>
+    <div class="row">
+      <% standsData.forEach(data => { %>
+      <div class="col-md-4 col-12 mt-4">
+          <div class="card">
+              <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
+              <div class="card-body">
+              <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
+              <p class="card-text"><%= data.chapter %></p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <a href="/char" class="text-center mt-2"><button class="button btn" type="submit">See More</button></a>
+    </div>  
+  </div>
+
+
   
   
 

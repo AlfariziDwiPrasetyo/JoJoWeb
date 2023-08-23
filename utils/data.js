@@ -1,5 +1,3 @@
-data = [1,2,3,4,5,6,7,8,9,10]
-
 const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max + min )) + min
 }
@@ -16,4 +14,4 @@ const getRandomData = (data, count) => {
     return selectedNumbers;
   }
 
-  console.log(getRandomData(data,3))
+ module.exports = {getRandomData}
