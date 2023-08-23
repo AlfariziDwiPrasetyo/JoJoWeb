@@ -1,4 +1,7 @@
 <div class="row">
+  <% if (!datas) { %>
+   <h1>Data Not Found</h1>
+  <% } else {%>
     <% datas.forEach(data => { %>
     <div class="col-md-4 col-12 mt-4 w-50">
         <div class="card">
@@ -10,4 +13,6 @@
         </div>
     </div>
     <% }) %>
+  <% } %>
+
 </div>

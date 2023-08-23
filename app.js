@@ -37,6 +37,7 @@ const fetchStands = (req,res,next) => {
         .then(data => {
             dataStands = data
             req.dataStands = data
+            console.log(data)
             next()})
         .catch(err => {console.log(err)})
     }else{
@@ -78,11 +79,14 @@ app.get("/stand/:id", fetchStands,(req,res)=>{
 
 
 
-
+// not found page
 app.use("/", (req,res)=>{
     res.render("404",{title:"NOT FOUND",layout:"layouts/main-layouts"})
 })
 
+
+
+// server
 app.listen(3000,()=>{
     console.log("Server Running.....")
 })
