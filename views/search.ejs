@@ -1,36 +1,44 @@
-<div class="about-container p-2">
-    <h2 class= "mt-5 about-us" style="color: indigo;">Characters</h2>
-    <div class="row">
-      <% charactersData.forEach(data => { %>
-      <div class="col-md-4 col-12 mt-4">
-          <div class="card">
-              <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
-              <div class="card-body">
-              <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
-              <p class="card-text"><%= data.chapter %></p>
+<div class="wrap">
+    <h2 class="mt-4">You searched for <span class="fw-bold"><%= searchValue %></span></h2>
+    <div class="about-container p-2">
+        <h2 class= "mt-5 about-us" style="color: indigo;">Characters</h2>
+        <div class="row">
+            <% if (charactersData.length == 0) { %>
+            <h3 class="fw-bold text-center mt-5" style="color: indigo;">Not Found</h3>
+            <% } else {%>
+          <% charactersData.forEach(data => { %>
+          <div class="col-md-4 col-12 mt-4">
+              <div class="card">
+                  <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
+                  <div class="card-body">
+                  <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
+                  <p class="card-text"><%= data.chapter %></p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <% }) %>
-        <a href="/char" class="text-center mt-2"><button class="button btn" type="submit">See More</button></a>
-    </div>  
-  </div>
-
-
-  <div class="about-container p-2">
-    <h2 class= "mt-5 about-us" style="color: indigo;">Stands</h2>
-    <div class="row">
-      <% standsData.forEach(data => { %>
-      <div class="col-md-4 col-12 mt-4">
-          <div class="card">
-              <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
-              <div class="card-body">
-              <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
-              <p class="card-text"><%= data.chapter %></p>
+            <% }) %>
+        <% } %>
+        </div>  
+      </div>
+    
+      <div class="about-container p-2">
+        <h2 class= "mt-5 about-us" style="color: indigo;">Stands</h2>
+        <div class="row">
+        <% if (standsData.length == 0) { %>
+            <h3 class="fw-bold text-center mt-5" style="color: indigo;">Not Found</h3>
+            <% } else {%>
+          <% standsData.forEach(data => { %>
+          <div class="col-md-4 col-12 mt-4">
+              <div class="card">
+                  <img src="https://jojos-bizarre-api.netlify.app/assets/<%= data.image %>" class="pt-2 card-img-top m-auto" style="width: 200px; height: 200px; float: left; object-fit: contain;" alt="Image 1">
+                  <div class="card-body">
+                  <h5 class="card-title"><a class="text-decoration-none name" href="/char/<%= data.id %>"><%= data.name %></a></h5>
+                  <p class="card-text"><%= data.chapter %></p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <% }) %>
-        <a href="/char" class="text-center mt-2"><button class="button btn" type="submit">See More</button></a>
-    </div>  
-  </div>
+            <% }) %>
+            <% } %>
+        </div>  
+      </div>
+</div>

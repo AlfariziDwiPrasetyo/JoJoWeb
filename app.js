@@ -86,7 +86,7 @@ app.get('/search', fetchChar , fetchStands, (req,res) => {
     const charactersData = getSearchData(dataChars, searchValue)
     const standsData = getSearchData(dataStands, searchValue)
 
-    res.render("search", {title:"search", charactersData, standsData, layout:"layouts/main-layouts"})
+    res.render("search", {title:"search", searchValue, charactersData, standsData, layout:"layouts/main-layouts"})
 })
 
 
