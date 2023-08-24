@@ -79,6 +79,11 @@ app.get("/stand/:id", fetchStands,(req,res)=>{
     res.render("standProfile",{title:`Character ${standId}`, stand, layout:"layouts/main-layouts"})
 })
 
+// search characters and stands
+app.get('/search', (req,res) => {
+    res.send("Halo")
+})
+
 
 
 
