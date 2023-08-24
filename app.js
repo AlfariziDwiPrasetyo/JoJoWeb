@@ -1,6 +1,7 @@
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const {getRandomData} = require("./utils/data")
+const {getSearchData} = require("./utils/searchData")
 
 
 app = express()
@@ -80,8 +81,12 @@ app.get("/stand/:id", fetchStands,(req,res)=>{
 })
 
 // search characters and stands
-app.get('/search', (req,res) => {
-    res.send("Halo")
+app.get('/search', fetchChar , fetchStands, (req,res) => {
+    searchValue = req.query.s 
+    const charactersData = getSearchData(dataChars, searchValue)
+    const standsData = getSearchData(dataStands, searchValue)
+
+    res.render("search", {title:"search", charactersData, standsData, layout:"layouts/main-layouts"})
 })
 
 
