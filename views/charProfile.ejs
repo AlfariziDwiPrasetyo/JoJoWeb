@@ -1,1 +1,12 @@
-<h1><%= title %></h1>
+<div class="wrap" style="width: 100%;">
+    <h2 class="mt-4 text-center"><%= char.name %></h2>
+    <p class="text-center"><%= char.japaneseName %></p>
+
+    <div class="img-container m-auto d-flex justify-content-center w-50">
+        <img src="https://jojos-bizarre-api.netlify.app/assets/<%= char.image %> %>" alt="" style="width: 350px; height: 350px; object-fit: contain;">
+    </div>
+
+    <blockquote class="text-center mt-4 fw-bold" style="font-family: 'Explora', cursive; font-size: 40px;">
+        " <%= char.catchphrase %> "
+    </blockquote>
+</div>
