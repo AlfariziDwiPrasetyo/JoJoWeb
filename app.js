@@ -81,6 +81,10 @@ app.get("/stand/:id", fetchStands, fetchChar, (req,res)=>{
     res.render("standProfile",{title:`Character ${standId}`, standUser, stand, layout:"layouts/main-layouts"})
 })
 
+app.get("/chapters", (req,res) =>{
+    res.render("chapter", {layout:"layouts/main-layouts", title:"Chapters"})
+})
+
 // search characters and stands
 app.get('/search', fetchChar , fetchStands, (req,res) => {
     searchValue = req.query.s 
