@@ -105,6 +105,6 @@ app.use("/", (req,res)=>{
 
 
 // server
-app.listen(3000,()=>{
+app.listen(80,()=>{
     console.log("Server Running.....")
 })
