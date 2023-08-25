@@ -2,6 +2,7 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const {getRandomData} = require("./utils/data")
 const {getSearchData} = require("./utils/searchData")
+const port = process.env.PORT || 80;
 
 
 app = express()
@@ -105,6 +106,6 @@ app.use("/", (req,res)=>{
 
 
 // server
-app.listen(80,()=>{
+app.listen(port,()=>{
     console.log("Server Running.....")
 })
