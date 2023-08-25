@@ -1,2 +1,27 @@
-<h1><%= title %></h1>
-<h2><%= stand.name %></h2>
+<div class="wrap" style="width: 100%;">
+    <h2 class="mt-4 text-center"><%= stand.name %></h2>
+    <p class="text-center"><%= stand.japaneseName %></p>
+
+    <div class="img-container m-auto d-flex justify-content-center w-50">
+        <img src="https://jojos-bizarre-api.netlify.app/assets/<%= stand.image %> %>" alt="" style="width: 350px; height: 350px; object-fit: contain;">
+    </div>
+
+    <% if (stand.battlecry !== "none") { %>
+        <blockquote class="text-center mt-4 fw-bold" style="font-family: 'Explora', cursive; font-size: 40px;">
+            " <%= stand.battlecry %> "
+        </blockquote>
+    <% } %>
+
+    <div class="container- text-center pt-3 px-5">
+        <h3 class="mt-5" style="color: indigo;">Stand User</h3>
+        <a href="/char/<%= standUser.id %>" class="text-decoration-none"><p class="mt-3"><%= standUser.name  %></p></a>
+
+        <h3 class="mt-5" style="color: indigo;">Abilities</h3>
+        <p class="mt-3"><%= stand.abilities  %></p>
+
+        <h3 class="mt-5" style="color: indigo;">Chapter</h3>
+        <p class="mt-3"><%= stand.chapter  %></p>
+    </div>
+
+
+</div>

@@ -74,10 +74,11 @@ app.get("/stands",fetchStands, (req,res)=>{
 })
 
 // stands id route
-app.get("/stand/:id", fetchStands,(req,res)=>{
+app.get("/stand/:id", fetchStands, fetchChar, (req,res)=>{
     standId = req.params.id
     stand = dataStands.find(data => data.id === standId)
-    res.render("standProfile",{title:`Character ${standId}`, stand, layout:"layouts/main-layouts"})
+    standUser = dataChars.find(data => data.id === stand.standUser)
+    res.render("standProfile",{title:`Character ${standId}`, standUser, stand, layout:"layouts/main-layouts"})
 })
 
 // search characters and stands

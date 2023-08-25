@@ -9,4 +9,36 @@
     <blockquote class="text-center mt-4 fw-bold" style="font-family: 'Explora', cursive; font-size: 40px;">
         " <%= char.catchphrase %> "
     </blockquote>
+
+    <div class="container- text-center pt-3 px-5">
+        <h3 class="mt-5" style="color: indigo;">Nationality</h3>
+        <p class="mt-3"><%= char.nationality  %></p>
+
+        <h3 class="mt-5" style="color: indigo;">Abilities</h3>
+        <p class="mt-3"><%= char.abilities  %></p>
+
+        <h3 class="mt-5" style="color: indigo;">Family</h3>
+        <% if (char.family == "none") { %>
+            <p class="mt-3">Unknown</p>
+        <% } else {%>
+            <p class="mt-3"><%= char.family  %></p>
+        <% } %>
+        
+        
+        <h3 class="mt-5" style="color: indigo;">Status</h3>
+        <% if (char.living == true) { %>
+            <p class="mt-3 text-success">Living</p>
+        <% } else {%>
+            <p class="mt-3 text-danger">Dead</p>
+        <% } %>
+        
+        <h3 class="mt-5" style="color: indigo;">Is Human</h3>
+        <% if (char.isHuman == true) { %>
+            <p class="mt-3">Human</p>
+        <% } else {%>
+            <p class="mt-3">Not Human</p>
+        <% } %>
+        
+        
+    </div>
 </div>
